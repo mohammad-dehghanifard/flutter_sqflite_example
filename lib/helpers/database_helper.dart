@@ -1,6 +1,7 @@
+import 'package:flutter_sqflite_examle/helpers/encrypt_data.dart';
 import 'package:sqflite/sqflite.dart';
 
-class DatabaseHelper {
+class DatabaseHelper extends EncryptData {
   static final DatabaseHelper _singleton = DatabaseHelper._internal();
   factory DatabaseHelper() => _singleton;
   DatabaseHelper._internal();
@@ -35,7 +36,7 @@ class DatabaseHelper {
   // insert user
   Future<void> insertNewUser({required String username,required String userId}) async {
     final db = await database;
-    await db.insert("users",{'name' : username,"userid" : userId});
+    await db.insert("users",{'name' : username,"userid" : encrypt(userId)});
   }
   // get all data
   Future<List<Map<String,dynamic>>> getAllUsers() async {
