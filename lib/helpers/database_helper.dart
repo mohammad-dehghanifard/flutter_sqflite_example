@@ -16,12 +16,13 @@ class DatabaseHelper extends EncryptData {
     if(_database != null){
       return _database!;
     } else {
-      _database = await _initDatabase();
+      _database = await initDatabase();
       return _database!;
     }
   }
   // initial database
-  Future<Database> _initDatabase() async {
+  Future<Database> initDatabase() async {
+    encInitialZer();
     final dbPath = getDatabasesPath();
     return await openDatabase(
       '$dbPath/${DatabaseHelper.dbName}',
@@ -31,7 +32,7 @@ class DatabaseHelper extends EncryptData {
   }
   // create table
   Future<void> _createTable(Database db,version) async {
-    await db.execute('CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, userid INTEGER');
+    await db.execute('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, userid Text');
   }
   // insert user
   Future<void> insertNewUser({required String username,required String userId}) async {

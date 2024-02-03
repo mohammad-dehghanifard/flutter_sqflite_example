@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sqflite_examle/helpers/database_helper.dart';
 import 'package:flutter_sqflite_examle/home_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  DatabaseHelper().initDatabase();
   runApp(const MyApp());
 }
 
